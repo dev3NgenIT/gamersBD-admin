@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { User } from "../../services/user.service";
 import { TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import Button from "../../components/ui/button/Button";
 // import Button from "../../components/ui/button/Button";
 
 interface DeleteUserModalProps {

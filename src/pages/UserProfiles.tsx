@@ -31,10 +31,13 @@ export default function UserProfiles() {
     }
   };
 
-  const handleProfileUpdate = async (updatedData: Partial<UserProfile>) => {
-    if (!token || !profile) return;
+  const handleProfileUpdate = async (
+    updatedData: Partial<UserProfile>,
+  ): Promise<UserProfile> => {
+    if (!token || !profile) {
+      throw new Error("No authentication token or profile found");
+    }
 
-    // No try/catch needed here - let the error bubble up to the component that calls this
     const updated = await userService.updateProfile(token, updatedData);
     setProfile(updated);
     return updated;
@@ -86,3 +89,4 @@ export default function UserProfiles() {
     </>
   );
 }
+  

@@ -34,7 +34,7 @@ export default function UserManagement() {
     message: '',
     type: 'success',
   });
-
+console.log(error)
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ show: true, message, type });
     setTimeout(() => {

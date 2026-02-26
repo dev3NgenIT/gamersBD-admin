@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { ThemeToggleButton } from "../common/ThemeToggleButton";
 import NotificationDropdown from "./NotificationDropdown";
-import UserDropdown from "./UserDropdown";
 import { Link } from "react-router";
+import UserDropdown from "./UserDropdown";
+import { useAuth } from "../../context/AuthContext"; // Import useAuth
 
 // Define the interface for the props
 interface HeaderProps {
   onClick?: () => void; // Optional function that takes no arguments and returns void
   onToggle: () => void;
 }
+
 const Header: React.FC<HeaderProps> = ({ onClick, onToggle }) => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
+  const { user, logout } = useAuth(); // Get user and logout from auth context
 
   const toggleApplicationMenu = () => {
     setApplicationMenuOpen(!isApplicationMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -151,14 +158,12 @@ const Header: React.FC<HeaderProps> = ({ onClick, onToggle }) => {
           } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
         >
           <div className="flex items-center gap-2 2xsm:gap-3">
-            {/* <!-- Dark Mode Toggler --> */}
+            {/* Dark Mode Toggler */}
             <ThemeToggleButton />
-            {/* <!-- Dark Mode Toggler --> */}
             <NotificationDropdown />
-            {/* <!-- Notification Menu Area --> */}
           </div>
-          {/* <!-- User Area --> */}
-          <UserDropdown />
+          {/* User Area - Now with both user and onLogout props */}
+          <UserDropdown user={user} onLogout={handleLogout} />
         </div>
       </div>
     </header>
