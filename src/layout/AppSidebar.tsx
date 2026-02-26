@@ -31,6 +31,12 @@ const navItems: NavItem[] = [
     icon: <FolderIcon />, // Folder icon for categories
     path: "/categories",
   },
+  // In your navItems array in AppSidebar
+  {
+    name: "User Management",
+    icon: <UserCircleIcon />,
+    path: "/users",
+  },
   {
     icon: <CalenderIcon />,
     name: "Calendar",

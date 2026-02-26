@@ -35,12 +35,12 @@ export default function SignInForm() {
 
   const handleGoogleSignIn = () => {
     // Implement Google sign-in
-    window.location.href = "http://localhost:5000/api/auth/google";
+    window.location.href = "https://gamersbd-server.onrender.com/api/auth/google";
   };
 
   const handleXSignIn = () => {
     // Implement X (Twitter) sign-in
-    window.location.href = "http://localhost:5000/api/auth/twitter";
+    window.location.href = "https://gamersbd-server.onrender.com/api/auth/twitter";
   };
 
   return (

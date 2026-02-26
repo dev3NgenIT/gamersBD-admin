@@ -21,6 +21,7 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import AllCategories from "./pages/Categories/AllCategories";
+import UserManagement from "./pages/Users/UserManagement";
 
 export default function App() {
   return (
@@ -33,22 +34,26 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
 
           {/* Protected Routes with Dashboard Layout */}
-          <Route element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             {/* Redirect root to dashboard */}
             <Route index element={<Navigate to="/dashboard" replace />} />
-            
+
             {/* Dashboard */}
             <Route path="/dashboard" element={<Home />} />
 
             {/* Categories */}
             <Route path="/categories" element={<AllCategories />} />
 
+            <Route path="/users" element={<UserManagement />} />
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
+
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
 
