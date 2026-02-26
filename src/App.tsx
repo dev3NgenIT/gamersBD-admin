@@ -18,6 +18,8 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import AllCategories from "./pages/Categories/AllCategories";
+import CreateCategory from "./pages/Categories/CreateCategory";
 
 export default function App() {
   return (
@@ -28,6 +30,10 @@ export default function App() {
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route index path="/" element={<Home />} />
+
+            {/* Categories */}
+            <Route path="/categories" element={<AllCategories />} />
+            <Route path="/categories/create" element={<CreateCategory />} />
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
