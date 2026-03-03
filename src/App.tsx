@@ -22,6 +22,9 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import AllCategories from "./pages/Categories/AllCategories";
 import UserManagement from "./pages/Users/UserManagement";
+import Products from "./pages/Products/Products";
+import AddProduct from "./pages/Products/AddProduct";
+import EditProduct from "./pages/Products/EditProduct";
 
 export default function App() {
   return (
@@ -49,6 +52,9 @@ export default function App() {
 
             {/* Categories */}
             <Route path="/categories" element={<AllCategories />} />
+            <Route path="/all-products" element={<Products />} />
+            <Route path="/products/add" element={<AddProduct />} />
+            <Route path="/edit-product/:id" element={<EditProduct />} />
 
             <Route path="/users" element={<UserManagement />} />
             {/* Others Page */}

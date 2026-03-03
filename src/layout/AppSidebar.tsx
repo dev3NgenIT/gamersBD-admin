@@ -3,15 +3,13 @@ import { Link, useLocation } from "react-router";
 
 // Assume these icons are imported from an icon library
 import {
-  CalenderIcon,
   ChevronDownIcon,
   HorizontaLDots,
   UserCircleIcon,
-  FolderIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import SidebarWidget from "./SidebarWidget";
-import { HomeIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, SquaresPlusIcon } from "@heroicons/react/24/outline";
 
 type NavItem = {
   name: string;
@@ -26,45 +24,24 @@ const navItems: NavItem[] = [
     name: "Dashboard",
     path: "/dashboard", // Single dashboard entry
   },
-  {
-    name: "Categories",
-    icon: <FolderIcon />, // Folder icon for categories
-    path: "/categories",
-  },
   // In your navItems array in AppSidebar
+  {
+    name: "Product Management",
+    icon: <SquaresPlusIcon />,
+    path: "/products", 
+    subItems: [
+      { name: "All Categories", path: "/categories", pro: false },
+      { name: "All Products", path: "/all-products", pro: false },
+    ],
+  },
   {
     name: "User Management",
     icon: <UserCircleIcon />,
     path: "/users",
+    subItems: [
+      { name: "User Profile", path: "/profile", pro: false },
+    ],
   },
-  {
-    icon: <CalenderIcon />,
-    name: "Calendar",
-    path: "/calendar",
-  },
-  {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
-  },
-  // {
-  //   name: "Forms",
-  //   icon: <ListIcon />,
-  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  // },
-  // {
-  //   name: "Tables",
-  //   icon: <TableIcon />,
-  //   subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  // },
-  // {
-  //   name: "Pages",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Blank Page", path: "/blank", pro: false },
-  //     { name: "404 Error", path: "/error-404", pro: false },
-  //   ],
-  // },
 ];
 
 const othersItems: NavItem[] = [

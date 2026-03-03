@@ -25,12 +25,45 @@ export default function AddUserModal({
     phone: "",
   });
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validation
+    if (!formData.name.trim()) {
+      setError("Name is required");
+      return;
+    }
+    if (!formData.email.trim()) {
+      setError("Email is required");
+      return;
+    }
+    if (!formData.password.trim()) {
+      setError("Password is required");
+      return;
+    }
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setError(null);
     setSaving(true);
+    
     try {
-      await onSave(formData);
+      // Auto-generate firstName and lastName from name if not provided
+      const nameParts = formData.name.split(' ');
+      const submitData = {
+        ...formData,
+        firstName: formData.firstName || nameParts[0] || '',
+        lastName: formData.lastName || nameParts.slice(1).join(' ') || '',
+      };
+      
+      console.log("Submitting user data:", submitData); // Debug log
+      await onSave(submitData);
+      
+      // Reset form on success
       setFormData({
         name: "",
         email: "",
@@ -40,6 +73,10 @@ export default function AddUserModal({
         lastName: "",
         phone: "",
       });
+      onClose(); // Close modal on success
+    } catch (err) {
+      console.error("Error creating user:", err);
+      setError(err instanceof Error ? err.message : "Failed to create user");
     } finally {
       setSaving(false);
     }
@@ -68,6 +105,12 @@ export default function AddUserModal({
               </button>
             </div>
 
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div className="space-y-4">
                 <div>
@@ -77,10 +120,12 @@ export default function AddUserModal({
                   <Input
                     type="text"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value });
+                      setError(null);
+                    }}
                     placeholder="Enter full name"
+                    required
                   />
                 </div>
 
@@ -116,10 +161,12 @@ export default function AddUserModal({
                   <Input
                     type="email"
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setFormData({ ...formData, email: e.target.value });
+                      setError(null);
+                    }}
                     placeholder="Enter email"
+                    required
                   />
                 </div>
 
@@ -130,11 +177,16 @@ export default function AddUserModal({
                   <Input
                     type="password"
                     value={formData.password}
-                    onChange={(e) =>
-                      setFormData({ ...formData, password: e.target.value })
-                    }
-                    placeholder="Enter password"
+                    onChange={(e) => {
+                      setFormData({ ...formData, password: e.target.value });
+                      setError(null);
+                    }}
+                    placeholder="Enter password (min. 6 characters)"
+                    required
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Minimum 6 characters
+                  </p>
                 </div>
 
                 <div>
@@ -168,12 +220,22 @@ export default function AddUserModal({
               </div>
 
               <div className="flex gap-3 mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Button variant="outline" onClick={onClose} className="flex-1">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={onClose} 
+                  className="flex-1"
+                  disabled={saving}
+                >
                   Cancel
                 </Button>
-                <button type="submit" disabled={saving} className="flex-1">
+                <Button 
+                  type="submit" 
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                  disabled={saving}
+                >
                   {saving ? "Creating..." : "Create User"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

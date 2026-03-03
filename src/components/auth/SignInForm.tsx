@@ -32,16 +32,6 @@ export default function SignInForm() {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    // Implement Google sign-in
-    window.location.href = "https://gamersbd-server.onrender.com/api/auth/google";
-  };
-
-  const handleXSignIn = () => {
-    // Implement X (Twitter) sign-in
-    window.location.href = "https://gamersbd-server.onrender.com/api/auth/twitter";
-  };
-
   return (
     <div className="flex flex-col flex-1">
       <div className="w-full max-w-md pt-10 mx-auto">
@@ -73,7 +63,7 @@ export default function SignInForm() {
 
           <div>
             {/* Social Login Buttons */}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
+            {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
               <button
                 onClick={handleGoogleSignIn}
                 className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
@@ -120,9 +110,9 @@ export default function SignInForm() {
                 </svg>
                 Sign in with X
               </button>
-            </div>
+            </div> */}
 
-            <div className="relative py-3 sm:py-5">
+            {/* <div className="relative py-3 sm:py-5">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
               </div>
@@ -131,7 +121,7 @@ export default function SignInForm() {
                   Or
                 </span>
               </div>
-            </div>
+            </div> */}
 
             <form onSubmit={handleSubmit}>
               <div className="space-y-6">
@@ -207,7 +197,7 @@ export default function SignInForm() {
               </div>
             </form>
 
-            <div className="mt-5">
+            {/* <div className="mt-5">
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Don't have an account?{" "}
                 <Link
@@ -217,7 +207,7 @@ export default function SignInForm() {
                   Sign Up
                 </Link>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
