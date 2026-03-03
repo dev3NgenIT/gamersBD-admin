@@ -1,5 +1,5 @@
 // const API_URL = 'https://gamersbd-server.onrender.com/api';
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://gamersbd-server.onrender.com/api';
 
 export interface UserProfile {
   _id: string;

@@ -166,7 +166,7 @@ export default function Products() {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/products?${queryParams.toString()}`,
+        `https://gamersbd-server.onrender.com/api/products?${queryParams.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
