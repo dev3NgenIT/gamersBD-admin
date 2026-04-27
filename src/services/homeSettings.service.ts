@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ApiResponse, HomeSettings, SliderSlide, HeroOffer, PromoCard } from '../types/homeSettings.types';
 
-const API_BASE_URL = 'http://localhost:5000/api/home-settings';
+const API_BASE_URL = 'https://gamersbd-server.onrender.com/api/home-settings';
 
 export const homeSettingsService = {
   // ==================== BASIC CRUD ====================
