@@ -78,6 +78,7 @@ const navItems: NavItem[] = [
       { name: "FAQ", path: "/faq", pro: false },
       { name: "About Us (Comming Soon)", path: "#", pro: false },
       { name: "Contacts Messages", path: "/contacts", pro: false },
+      { name: "Home Page", path: "/home-settings", pro: false },
     ],
   },
   // {
